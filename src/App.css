@@ -10,6 +10,10 @@
   gap: 20px;
 }
 
+.screen-game {
+  gap: 12px;
+}
+
 .hero {
   display: grid;
   gap: 12px;
@@ -157,6 +161,11 @@
   gap: 20px;
 }
 
+.prompt-panel,
+.mini-stats {
+  min-width: 0;
+}
+
 .progress-row,
 .timer-wrap,
 .control-bar {
@@ -178,6 +187,10 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
+}
+
+.mini-stats {
+  align-items: start;
 }
 
 .mini-stats strong,
@@ -227,6 +240,7 @@
 }
 
 .fretboard-grid {
+  --fret-width: 64px;
   display: grid;
   gap: 6px;
   min-width: max-content;
@@ -357,7 +371,6 @@
 @media (max-width: 900px) {
   .panel-grid,
   .game-topbar,
-  .mini-stats,
   .results-stats,
   .field-grid,
   .control-bar {
@@ -373,14 +386,18 @@
 
 @media (max-width: 640px) {
   .app-shell {
-    padding: 10px;
+    padding: 8px;
   }
 
   .app-card,
   .panel-grid,
   .game-layout,
   .results-layout {
-    gap: 14px;
+    gap: 10px;
+  }
+
+  .screen-game {
+    gap: 8px;
   }
 
   .hero {
@@ -400,7 +417,11 @@
   .results-hero,
   .results-detail,
   .fretboard-panel {
-    padding: 14px;
+    padding: 10px;
+  }
+
+  .game-topbar {
+    gap: 8px;
   }
 
   .field-grid {
@@ -418,22 +439,39 @@
 
   .mini-stats strong,
   .results-stats strong {
-    font-size: 1.35rem;
+    font-size: 1.1rem;
+  }
+
+  .mini-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
   }
 
   .progress-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    font-size: 0.86rem;
   }
 
   .prompt-note {
-    font-size: clamp(2.75rem, 20vw, 4rem);
+    font-size: clamp(2.3rem, 14vw, 3rem);
+  }
+
+  .prompt-copy {
+    display: none;
   }
 
   .timer-wrap {
     width: 100%;
-    margin-top: 14px;
+    margin-top: 8px;
+    gap: 10px;
   }
 
   .timer-bar {
@@ -442,25 +480,43 @@
   }
 
   .fretboard-hint {
-    display: block;
-    font-size: 0.82rem;
+    display: none;
+  }
+
+  .fretboard-grid {
+    --fret-width: 34px;
+    gap: 4px;
   }
 
   .corner-cell,
   .fret-label,
   .string-label,
   .fret-cell {
-    min-height: 74px;
+    min-height: 46px;
   }
 
   .fret-label,
   .string-label {
-    border-radius: 10px;
-    font-size: 0.85rem;
+    border-radius: 8px;
+    font-size: 0.72rem;
+  }
+
+  .string-label {
+    padding-inline: 2px;
+  }
+
+  .inlay-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .fret-cell.nut {
+    border-left-width: 5px;
   }
 
   .fretboard-scroll {
     margin-inline: -2px;
+    padding-bottom: 0;
   }
 
   .control-actions,
@@ -474,12 +530,89 @@
   }
 
   .control-bar span {
-    font-size: 0.94rem;
+    font-size: 0.82rem;
   }
 }
 
 @media (min-width: 641px) {
   .fretboard-hint {
     display: none;
+  }
+}
+
+@media (max-width: 900px) and (orientation: landscape) {
+  .app-shell {
+    padding: 8px;
+  }
+
+  .screen-game,
+  .game-layout {
+    gap: 8px;
+  }
+
+  .game-topbar {
+    grid-template-columns: minmax(0, 1.3fr) minmax(180px, 0.7fr);
+    gap: 8px;
+  }
+
+  .prompt-panel,
+  .mini-stats,
+  .fretboard-panel,
+  .control-bar {
+    padding: 10px;
+  }
+
+  .progress-row {
+    font-size: 0.82rem;
+    gap: 6px 12px;
+  }
+
+  .prompt-note {
+    font-size: clamp(2rem, 8vw, 2.6rem);
+  }
+
+  .prompt-copy,
+  .fretboard-hint {
+    display: none;
+  }
+
+  .timer-wrap {
+    margin-top: 8px;
+  }
+
+  .mini-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .mini-stats strong {
+    font-size: 1rem;
+  }
+
+  .fretboard-grid {
+    --fret-width: 38px;
+    gap: 3px;
+  }
+
+  .corner-cell,
+  .fret-label,
+  .string-label,
+  .fret-cell {
+    min-height: 34px;
+  }
+
+  .fret-label,
+  .string-label {
+    font-size: 0.68rem;
+    border-radius: 6px;
+  }
+
+  .inlay-dot {
+    width: 9px;
+    height: 9px;
+  }
+
+  .control-bar span {
+    font-size: 0.8rem;
   }
 }

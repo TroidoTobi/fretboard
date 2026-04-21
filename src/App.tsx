@@ -363,16 +363,18 @@ function App() {
 
   return (
     <div className="app-shell">
-      <div className="app-card">
-        <header className="hero">
-          <div>
-            <p className="eyebrow">Bass Fretboard Trainer</p>
-            <h1>Train note to position recall on a 4-string bass.</h1>
-          </div>
-          <p className="hero-copy">
-            Every valid fretboard position counts. The app checks pitch class, not one fixed answer.
-          </p>
-        </header>
+      <div className={`app-card screen-${screen}`}>
+        {screen !== 'game' && (
+          <header className="hero">
+            <div>
+              <p className="eyebrow">Bass Fretboard Trainer</p>
+              <h1>Train note to position recall on a 4-string bass.</h1>
+            </div>
+            <p className="hero-copy">
+              Every valid fretboard position counts. The app checks pitch class, not one fixed answer.
+            </p>
+          </header>
+        )}
 
         {screen === 'setup' && (
           <SetupPanel
@@ -689,7 +691,7 @@ function Fretboard({
         <div
           className="fretboard-grid"
           style={{
-            gridTemplateColumns: `${setup.showStringLabels ? 72 : 28}px repeat(${frets.length}, minmax(64px, 1fr))`,
+            gridTemplateColumns: `${setup.showStringLabels ? 56 : 18}px repeat(${frets.length}, minmax(var(--fret-width, 64px), 1fr))`,
           }}
         >
           <div className="corner-cell" />
